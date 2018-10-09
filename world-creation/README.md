@@ -1,9 +1,9 @@
-# Map creation
+# World creation
 
 Please make sure that you have `blender>=2.79` installed. Note that the version of the ubuntu repository might be out of date.
 
 ## Blender
-Create a map in blender. Make sure you can use the option `File > Export > Collada (.dae)`. We will export the file later.
+Create a world in blender. Make sure you can use the option `File > Export > Collada (.dae)`. We will export the file later.
 
 ## revolve-simulator
 ### Groups A & B
@@ -59,3 +59,25 @@ pose = Pose(position=Vector3(0, 0, args.init_z))
 
 Open `$SIM_HOME/tol-revolve/tol/config/config.py` and
 change the value for the argument `--init-z` accordingly.
+
+
+
+
+### manual gazebo world
+export collidor (.dae)
+
+create new folder in
+mkdir -p ~/.gazebo/custom_worlds/example
+example
+example.dae
+
+example.world
+
+change 
+<world name="example">
+<uri>file://example.dae</uri>
+
+gazebo custom_worlds/example.world
+
+make sure that the world loads correctly
+

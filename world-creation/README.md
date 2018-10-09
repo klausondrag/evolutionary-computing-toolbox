@@ -18,7 +18,7 @@ Open blender and replace `$SIM_HOME/revolve/models/meshes/inferno.dae`
 Open `$SIM_HOME/revolve/tutorial.py` and
 change the worldfile: `world_file="worlds/inferno.world"`
 
-### Group C & D
+### Groups C & D
 Open a terminal in this folder.
 ```bash
 mkdir $SIM_HOME/tol-revolve/tools/models/inferno

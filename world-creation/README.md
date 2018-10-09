@@ -61,23 +61,40 @@ Open `$SIM_HOME/tol-revolve/tol/config/config.py` and
 change the value for the argument `--init-z` accordingly.
 
 
-
-
-### manual gazebo world
-export collidor (.dae)
-
-create new folder in
+## Manual gazebo world (not needed, just for documentation)
+Replace the world `example` with a name of your choosing. 
+```bash
 mkdir -p ~/.gazebo/custom_worlds/example
-example
-example.dae
+```
+Open blender and output the `.dae` file to `~/.gazebo/custom_worlds/example/example.dae`
 
-example.world
+Create a world file by executing the code below. Make sure to change the directory and the file name. Additionally, change the world name and the uri in the world file.
+```bash
+cat << EOM >> ~/.gazebo/custom_worlds/example/example.world
+<?xml version="1.0"?>
+<sdf version="1.4">
+  <world name="example">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <model name="my_mesh">
+      <pose>0 0 0  0 0 0</pose>
+      <static>true</static>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>file://example.dae</uri></mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>
+EOM
+```
 
-change 
-<world name="example">
-<uri>file://example.dae</uri>
-
-gazebo custom_worlds/example.world
-
-make sure that the world loads correctly
-
+Load the map by running `gazebo custom_worlds/example.world`
+Make sure that the world loads correctly and everything is defined as expected.

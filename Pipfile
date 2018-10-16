@@ -8,6 +8,7 @@ pandas = "*"
 seaborn = "*"
 numpy = "*"
 tables = "*"
+click = "*"
 
 [dev-packages]
 jupyter = "*"

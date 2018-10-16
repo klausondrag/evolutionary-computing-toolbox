@@ -6,8 +6,8 @@ name = "pypi"
 [packages]
 pandas = "*"
 seaborn = "*"
-"h5py" = "*"
 numpy = "*"
+tables = "*"
 
 [dev-packages]
 jupyter = "*"

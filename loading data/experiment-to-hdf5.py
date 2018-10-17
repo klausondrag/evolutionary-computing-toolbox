@@ -45,17 +45,18 @@ def convert(experiment_path: click.Path, group_name: str, world_name: str, outpu
     n_files = len(dataframes)
     print(f'Found {n_rows} rows in {n_files} runs ({n_rows // n_files} on average)')
 
-    def get_file_name(group_name: str, world_name: str, experiment_id: str, with_date: bool = False) -> str:
-        if with_date:
-            date = '_date=' + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-        else:
-            date = ''
-        name = f'experiment_grp={group_name}_wld={world_name}_exp={experiment_id}{date}.hdf5'
-        return name
-
     output_file_path = output_base_path / get_file_name(group_name, world_name, experiment_id)
     print(f'Wrote hdf5 file to {str(output_file_path)}')
     df.to_hdf(output_file_path, key='descriptors')
+
+
+def get_file_name(group_name: str, world_name: str, experiment_id: str, with_date: bool = False) -> str:
+    if with_date:
+        date = '_date=' + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    else:
+        date = ''
+    name = f'experiment_grp={group_name}_wld={world_name}_exp={experiment_id}{date}.hdf5'
+    return name
 
 
 if __name__ == '__main__':

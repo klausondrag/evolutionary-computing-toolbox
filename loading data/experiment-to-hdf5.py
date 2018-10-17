@@ -12,8 +12,10 @@ import click
 @click.argument('group-name', type=str)
 @click.argument('world-name', type=str)
 @click.option('--output-path', '-o', type=click.Path(exists=True, file_okay=False),
-              help='Write the solution to this filepath. In case no output is given, writes to the experiment folder')
-def convert(experiment_path: click.Path, group_name: str, world_name: str, output_path: Optional[click.Path]) -> None:
+              help='Write the solution to this filepath. In case no output is given, writes to the experiment folder.')
+@click.option('--with-date', '-d', type=bool, help='Adds the current date to the end of the file name.')
+def convert(experiment_path: click.Path, group_name: str, world_name: str, output_path: Optional[click.Path],
+            with_date: bool) -> None:
     experiment_path = Path(str(experiment_path))
     experiment_id = experiment_path.name
     output_base_path = experiment_path if output_path is None else output_path
@@ -45,7 +47,7 @@ def convert(experiment_path: click.Path, group_name: str, world_name: str, outpu
     n_files = len(dataframes)
     print(f'Found {n_rows} rows in {n_files} runs ({n_rows // n_files} on average)')
 
-    output_file_path = output_base_path / get_file_name(group_name, world_name, experiment_id)
+    output_file_path = output_base_path / get_file_name(group_name, world_name, experiment_id, with_date)
     print(f'Wrote hdf5 file to {str(output_file_path)}')
     df.to_hdf(output_file_path, key='descriptors')
 

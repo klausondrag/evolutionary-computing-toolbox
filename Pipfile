@@ -6,8 +6,12 @@ name = "pypi"
 [packages]
 pandas = "*"
 seaborn = "*"
+numpy = "*"
+tables = "*"
+click = "*"
 
 [dev-packages]
+jupyter = "*"
 
 [requires]
 python_version = "3.6"
